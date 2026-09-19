@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bkxlj1tm1jpsn"]
+
+[ext_resource type="Script" uid="uid://clct4vatn3iqn" path="res://enemy_laser.gd" id="1_iyr3e"]
+[ext_resource type="Texture2D" uid="uid://dw45wkp0wrrsi" path="res://images/enemylaser.png" id="2_x6ppl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m3ht5"]
+
+[node name="EnemyLaser" type="Area2D" unique_id=930771547]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_iyr3e")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1658651688]
+texture_filter = 1
+scale = Vector2(4, 4)
+texture = ExtResource("2_x6ppl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=978763495]
+shape = SubResource("RectangleShape2D_m3ht5")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=668325457]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

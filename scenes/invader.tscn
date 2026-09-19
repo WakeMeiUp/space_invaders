@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://dglr23iebb666"]
+
+[ext_resource type="Texture2D" uid="uid://btv7r0qq8xtmj" path="res://images/sprite_sheet.png" id="1_188pp"]
+[ext_resource type="Script" uid="uid://cerbbxdbhf2g2" path="res://scripts/invader.gd" id="1_iy08h"]
+[ext_resource type="Texture2D" uid="uid://cxl2jw8f7he3" path="res://images/explosion sprite.png" id="3_a0282"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iy08h"]
+atlas = ExtResource("1_188pp")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0282"]
+atlas = ExtResource("1_188pp")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_38d8k"]
+atlas = ExtResource("1_188pp")
+region = Rect2(0, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ljb72"]
+atlas = ExtResource("1_188pp")
+region = Rect2(24, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oi5b7"]
+atlas = ExtResource("1_188pp")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a3lch"]
+atlas = ExtResource("1_188pp")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rccn4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iy08h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a0282")
+}],
+"loop": true,
+"name": &"10ptalien",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_38d8k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ljb72")
+}],
+"loop": true,
+"name": &"20ptalien",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oi5b7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a3lch")
+}],
+"loop": true,
+"name": &"50ptalien",
+"speed": 3.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rvo0n"]
+size = Vector2(22, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rccn4"]
+atlas = ExtResource("3_a0282")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rvo0n"]
+atlas = ExtResource("3_a0282")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_41jo5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rccn4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rvo0n")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[node name="Area2D" type="Area2D" unique_id=1318126103]
+collision_layer = 4
+collision_mask = 34
+script = ExtResource("1_iy08h")
+
+[node name="InvaderSprite" type="AnimatedSprite2D" parent="." unique_id=241978212]
+sprite_frames = SubResource("SpriteFrames_rccn4")
+animation = &"10ptalien"
+frame_progress = 0.2820317
+
+[node name="InvaderCollision" type="CollisionShape2D" parent="." unique_id=855783562]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_rvo0n")
+
+[node name="ExplosionSprite" type="AnimatedSprite2D" parent="." unique_id=1741637428]
+visible = false
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_41jo5")
+frame = 1
+frame_progress = 0.5374086
+
+[node name="InvaderNoisemaker" type="AudioStreamPlayer2D" parent="." unique_id=33938696]
+unique_name_in_owner = true
+volume_db = -40.747
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

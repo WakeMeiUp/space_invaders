@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://ckdd3jfsffbvi"]
+
+[ext_resource type="Script" uid="uid://cql72ddoa83mt" path="res://scripts/PlayerLaser.gd" id="1_5frcx"]
+[ext_resource type="Texture2D" uid="uid://hqbxeem5kest" path="res://images/playerlaser.png" id="2_icg2r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nsi4s"]
+
+[node name="PlayerLaserArea2D" type="Area2D" unique_id=90960748]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_5frcx")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=308636190]
+scale = Vector2(4, 4)
+texture = ExtResource("2_icg2r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=310952427]
+shape = SubResource("RectangleShape2D_nsi4s")

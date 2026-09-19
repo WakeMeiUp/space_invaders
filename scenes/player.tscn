@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://qcqxjrlrdluw"]
+
+[ext_resource type="Texture2D" uid="uid://ccb5ukgaknjvj" path="res://images/player.png" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://ce4nftpgvrphy" path="res://scripts/player.gd" id="1_g2els"]
+[ext_resource type="Script" uid="uid://dwkd5nmuot3v1" path="res://scripts/gun_node_2d.gd" id="3_qlg0r"]
+[ext_resource type="PackedScene" uid="uid://ckdd3jfsffbvi" path="res://scenes/player_laser_area_2d.tscn" id="4_dqkch"]
+[ext_resource type="Texture2D" uid="uid://cxl2jw8f7he3" path="res://images/explosion sprite.png" id="5_qlg0r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
+size = Vector2(37, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rccn4"]
+atlas = ExtResource("5_qlg0r")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rvo0n"]
+atlas = ExtResource("5_qlg0r")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tuyoq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rccn4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rvo0n")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[node name="Player" type="Area2D" unique_id=446114348]
+collision_mask = 12
+script = ExtResource("1_g2els")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=670565458]
+texture_filter = 1
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("1_3vyb7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=790908668]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_g2els")
+
+[node name="GunNode2D" type="Node2D" parent="." unique_id=1254384497]
+unique_name_in_owner = true
+position = Vector2(0.4, -27)
+script = ExtResource("3_qlg0r")
+laserScene = ExtResource("4_dqkch")
+
+[node name="ExplosionSprite" type="AnimatedSprite2D" parent="." unique_id=1384258452]
+visible = false
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_tuyoq")
+
+[node name="PlayerNoisemaker" type="AudioStreamPlayer2D" parent="." unique_id=1345086053]
+unique_name_in_owner = true
+volume_db = -27.373
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

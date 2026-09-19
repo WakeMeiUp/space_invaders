@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://o7qjnspy3q6t"]
+
+[ext_resource type="PackedScene" uid="uid://dyk3q4g0rrs2b" path="res://scenes/game_over.tscn" id="1_c4rma"]
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=2062494983]
+
+[node name="GameOver" parent="." unique_id=1649502424 instance=ExtResource("1_c4rma")]
+offset_top = 1.0
+offset_bottom = 1.0

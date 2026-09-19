@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cehdgs4rabb8w"]
+
+[ext_resource type="Script" uid="uid://t0ovk1owmqmn" path="res://scripts/ufoSpawner.gd" id="1_ki7sw"]
+[ext_resource type="PackedScene" uid="uid://cn7w72ndmqy8a" path="res://scenes/ufo_sprite_node.tscn" id="2_8chlx"]
+[ext_resource type="AudioStream" uid="uid://bmkawdk6bmxm6" path="res://sounds/ufo_sound.mp3" id="3_8chlx"]
+
+[node name="UFOSpawner" type="Node2D" unique_id=29395768]
+script = ExtResource("1_ki7sw")
+UFOScene = ExtResource("2_8chlx")
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=2039941074]
+wait_time = 4.409000000000001
+
+[node name="UFOAudioPlayer" type="AudioStreamPlayer2D" parent="." unique_id=926762998]
+unique_name_in_owner = true
+stream = ExtResource("3_8chlx")
+volume_db = -48.134

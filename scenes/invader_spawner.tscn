@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bpi6oym6uaeln"]
+
+[ext_resource type="Script" uid="uid://c1xf2bc5kj2qg" path="res://scripts/invader_spawner.gd" id="1_pi4nt"]
+
+[node name="InvaderSpawner" type="Node2D" unique_id=525358097]
+script = ExtResource("1_pi4nt")
+
+[node name="MoveTimer" type="Timer" parent="." unique_id=1765814706]
+wait_time = 0.25
+
+[node name="ShootTimer" type="Timer" parent="." unique_id=2020576591]
+wait_time = 1.803
+autostart = true
+
+[node name="InvaderShootNoisemaker" type="AudioStreamPlayer2D" parent="." unique_id=1145983651]
+unique_name_in_owner = true
+volume_db = -25.225

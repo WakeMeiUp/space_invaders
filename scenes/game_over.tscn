@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://dyk3q4g0rrs2b"]
+
+[ext_resource type="Script" uid="uid://beqcno46nwcpc" path="res://scripts/game_over.gd" id="1_xeevv"]
+
+[node name="Control" type="Control" unique_id=1649502424]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xeevv")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=160539784]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1604296264]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=805868652]
+layout_mode = 2
+theme_override_constants/separation = 22
+alignment = 1
+
+[node name="Title" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1584001727]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "GAME OVER"
+horizontal_alignment = 1
+
+[node name="ScoreText" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=651119226]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Final Score: 000"
+horizontal_alignment = 1
+
+[node name="RestartButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=60206010]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 41
+text = "Play Again
+"
+
+[node name="GameOverNoisemaker" type="AudioStreamPlayer2D" parent="." unique_id=396618276]
+unique_name_in_owner = true
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]

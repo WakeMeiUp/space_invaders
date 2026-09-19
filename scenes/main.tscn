@@ -1,0 +1,120 @@
+[gd_scene format=3 uid="uid://sql1p53u27wg"]
+
+[ext_resource type="PackedScene" uid="uid://qcqxjrlrdluw" path="res://scenes/player.tscn" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://dt7ul7ia6w0fi" path="res://scenes/bullet_catcher.tscn" id="2_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://bpi6oym6uaeln" path="res://scenes/invader_spawner.tscn" id="3_sugp2"]
+[ext_resource type="PackedScene" uid="uid://cehdgs4rabb8w" path="res://scenes/ufo_spawner.tscn" id="4_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://bqeq4yyjwh8a2" path="res://scenes/bunker_node.tscn" id="5_tbgi4"]
+[ext_resource type="Script" uid="uid://nxb4djp1mihi" path="res://scripts/life_manager.gd" id="6_tefeu"]
+[ext_resource type="PackedScene" uid="uid://bhyi13jxjt4ki" path="res://scenes/score_node.tscn" id="7_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://o7qjnspy3q6t" path="res://scenes/canvas_layer.tscn" id="8_tipki"]
+[ext_resource type="Texture2D" uid="uid://nigoe21l8l2r" path="res://images/FullHeart.png" id="9_85g3d"]
+
+[sub_resource type="GDScript" id="GDScript_85g3d"]
+script/source = "extends Node
+#var noisemaker = AudioStreamPlayer2D.new()
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jyhfs"]
+size = Vector2(20, 658)
+
+[node name="Main" type="Node" unique_id=23714465]
+script = SubResource("GDScript_85g3d")
+
+[node name="Player" parent="." unique_id=446114348 instance=ExtResource("1_o5qli")]
+position = Vector2(577, 619)
+
+[node name="BulletCatcher" parent="." unique_id=541212235 instance=ExtResource("2_0wfyh")]
+
+[node name="InvaderSpawner" parent="." unique_id=525358097 instance=ExtResource("3_sugp2")]
+unique_name_in_owner = true
+
+[node name="Walls" type="Node" parent="." unique_id=560859448]
+
+[node name="LeftWall" type="Area2D" parent="Walls" unique_id=1839025492]
+collision_layer = 32
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/LeftWall" unique_id=1888538053]
+position = Vector2(0, 319)
+shape = SubResource("RectangleShape2D_jyhfs")
+
+[node name="RightWall" type="Area2D" parent="Walls" unique_id=1088450899]
+position = Vector2(1152, 0)
+collision_layer = 32
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/RightWall" unique_id=1286964429]
+position = Vector2(0, 319)
+shape = SubResource("RectangleShape2D_jyhfs")
+
+[node name="UFOSpawner" parent="." unique_id=29395768 instance=ExtResource("4_jyhfs")]
+position = Vector2(1137, 58)
+
+[node name="BunkerNode" parent="." unique_id=1872237780 instance=ExtResource("5_tbgi4")]
+position = Vector2(128, 480)
+
+[node name="BunkerNode2" parent="." unique_id=1317205716 instance=ExtResource("5_tbgi4")]
+position = Vector2(426, 480)
+
+[node name="BunkerNode3" parent="." unique_id=1115533457 instance=ExtResource("5_tbgi4")]
+position = Vector2(757, 480)
+
+[node name="BunkerNode4" parent="." unique_id=1705970748 instance=ExtResource("5_tbgi4")]
+position = Vector2(1027, 480)
+
+[node name="LifeManager" type="Node" parent="." unique_id=1623475539]
+script = ExtResource("6_tefeu")
+
+[node name="LifeManagerNoisemaker" type="AudioStreamPlayer2D" parent="LifeManager" unique_id=473945602]
+unique_name_in_owner = true
+
+[node name="ScoreNode" parent="." unique_id=717850444 instance=ExtResource("7_o6xl0")]
+
+[node name="CanvasLayer" parent="." unique_id=2062494983 instance=ExtResource("8_tipki")]
+visible = false
+
+[node name="GameDisplay" type="CanvasLayer" parent="." unique_id=61458730]
+
+[node name="Control" type="Control" parent="GameDisplay" unique_id=2005730746]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="MarginContainer" type="MarginContainer" parent="GameDisplay/Control" unique_id=914097548]
+layout_mode = 0
+offset_left = 10.0
+offset_top = -1.0
+offset_right = 1142.0
+offset_bottom = 35.0
+
+[node name="ScoreDisplay" type="HBoxContainer" parent="GameDisplay/Control/MarginContainer" unique_id=159973045]
+layout_mode = 2
+
+[node name="Text" type="Label" parent="GameDisplay/Control/MarginContainer/ScoreDisplay" unique_id=1970733714]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Score:"
+
+[node name="ScoreText" type="Label" parent="GameDisplay/Control/MarginContainer/ScoreDisplay" unique_id=1416178418]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "0"
+
+[node name="LivesDisplay" type="Sprite2D" parent="GameDisplay/Control/MarginContainer" unique_id=525456222]
+position = Vector2(1094, 37)
+texture = ExtResource("9_85g3d")
+
+[connection signal="area_entered" from="Walls/LeftWall" to="InvaderSpawner" method="_on_left_wall_area_entered"]
+[connection signal="area_entered" from="Walls/RightWall" to="InvaderSpawner" method="_on_right_wall_area_entered"]

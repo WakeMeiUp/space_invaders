@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://cn7w72ndmqy8a"]
+
+[ext_resource type="Script" uid="uid://c53qw5lg3o6n8" path="res://scripts/ufo_sprite_node.gd" id="1_bfwma"]
+[ext_resource type="Texture2D" uid="uid://4v8ggvfss3vg" path="res://images/ufo.png" id="1_noipv"]
+[ext_resource type="Texture2D" uid="uid://cxl2jw8f7he3" path="res://images/explosion sprite.png" id="3_p8cmv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bfwma"]
+atlas = ExtResource("1_noipv")
+region = Rect2(0, 0, 25, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p8cmv"]
+atlas = ExtResource("1_noipv")
+region = Rect2(25, 0, 25, 25)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ujh8e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bfwma")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p8cmv")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vacfl"]
+size = Vector2(21, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rccn4"]
+atlas = ExtResource("3_p8cmv")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rvo0n"]
+atlas = ExtResource("3_p8cmv")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vacfl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rccn4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rvo0n")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[node name="UFOSpriteNode" type="Area2D" unique_id=1470457598]
+texture_filter = 1
+scale = Vector2(2, 2)
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_bfwma")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1391673380]
+sprite_frames = SubResource("SpriteFrames_ujh8e")
+animation = &"new_animation"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1845966518]
+shape = SubResource("RectangleShape2D_vacfl")
+
+[node name="ExplosionSprite" type="AnimatedSprite2D" parent="." unique_id=2137089243]
+visible = false
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_vacfl")
+
+[node name="UfoNoisemaker" type="AudioStreamPlayer2D" parent="." unique_id=589304900]
+unique_name_in_owner = true
+volume_db = -26.0
+
+[node name="UfoNoisemaker2" type="AudioStreamPlayer2D" parent="." unique_id=789943683]
+unique_name_in_owner = true
+volume_db = -28.328
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

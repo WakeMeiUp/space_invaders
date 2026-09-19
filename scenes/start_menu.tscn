@@ -1,0 +1,157 @@
+[gd_scene format=3 uid="uid://cf8m0a0ghfcwt"]
+
+[ext_resource type="Script" uid="uid://ulowiqm13syv" path="res://scripts/start_menu.gd" id="1_h61rw"]
+[ext_resource type="Texture2D" uid="uid://btv7r0qq8xtmj" path="res://images/sprite_sheet.png" id="4_h61rw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fcv5n"]
+atlas = ExtResource("4_h61rw")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4v6gu"]
+atlas = ExtResource("4_h61rw")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_thu50"]
+atlas = ExtResource("4_h61rw")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m7x51"]
+atlas = ExtResource("4_h61rw")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h61rw"]
+atlas = ExtResource("4_h61rw")
+region = Rect2(0, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nxjfj"]
+atlas = ExtResource("4_h61rw")
+region = Rect2(24, 48, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nxjfj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fcv5n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4v6gu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_thu50")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m7x51")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h61rw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nxjfj")
+}],
+"loop": true,
+"name": &"new_animation_1",
+"speed": 3.0
+}]
+
+[node name="StartMenu" type="Control" unique_id=1967932426]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_h61rw")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1935583678]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1705616174]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=305667608]
+layout_mode = 2
+theme_override_constants/separation = 22
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1396703965]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Space Invaders"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1776255236]
+layout_mode = 2
+theme_override_constants/separation = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1950081142]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "10 Points"
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=78770507]
+position = Vector2(435.00003, 23)
+scale = Vector2(1.55, 1.55)
+sprite_frames = SubResource("SpriteFrames_nxjfj")
+animation = &"new_animation"
+frame_progress = 0.121586084
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=80296285]
+layout_mode = 2
+theme_override_constants/separation = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=551470879]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "20 Points"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=960203956]
+position = Vector2(435, 86)
+scale = Vector2(1.55, 1.55)
+sprite_frames = SubResource("SpriteFrames_nxjfj")
+frame_progress = 0.5639773
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=195892210]
+layout_mode = 2
+theme_override_constants/separation = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=1973478102]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "50 Points"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=1836936508]
+position = Vector2(432.99997, -42)
+scale = Vector2(1.55, 1.55)
+sprite_frames = SubResource("SpriteFrames_nxjfj")
+
+[node name="Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=163131554]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 41
+text = "Start Game"
+
+[node name="StartMenuNoisemaker" type="AudioStreamPlayer2D" parent="." unique_id=522015232]
+unique_name_in_owner = true
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
