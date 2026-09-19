@@ -118,13 +118,14 @@ func spawnInvaders():
 
 func shootLaser():
 	var invaderGroup = get_children().filter(func(c): return c is Invader)
-	var shootInvader = invaderGroup.pick_random()
-	var shot = invaderLaser.instantiate() as enemyLaser
-	shot.global_position = shootInvader.global_position
-	var noise = load("res://sounds/enemy_laser.mp3")
-	%InvaderShootNoisemaker.stream = noise
-	%InvaderShootNoisemaker.play()
-	get_tree().root.add_child(shot)
+	if invaderGroup:
+		var shootInvader = invaderGroup.pick_random()
+		var shot = invaderLaser.instantiate() as enemyLaser
+		shot.global_position = shootInvader.global_position
+		var noise = load("res://sounds/enemy_laser.mp3")
+		%InvaderShootNoisemaker.stream = noise
+		%InvaderShootNoisemaker.play()
+		get_tree().root.add_child(shot)
 
 func onInvaderDestroyed(points):
 	inv_destroyed.emit(points)

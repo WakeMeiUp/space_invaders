@@ -112,6 +112,6 @@ frame_progress = 0.5374086
 
 [node name="InvaderNoisemaker" type="AudioStreamPlayer2D" parent="." unique_id=33938696]
 unique_name_in_owner = true
-volume_db = -40.747
+volume_db = -59.762
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
