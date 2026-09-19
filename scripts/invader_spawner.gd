@@ -7,7 +7,7 @@ const START_X = 200
 const INVADERPOSX = 10
 const INVADERPOSY = 20
 const INVADER_WIDTH = 24
-#var c_spawn_position = 50
+var c_spawn_position = 50
 var rows = 1 # 5
 var cols = 1 # 10
 var first_round = true
@@ -66,11 +66,11 @@ func spawnInvaders():
 		# var rowwidth = (COLS * 24 * 1.5) + ((COLS - 1) * HORIZSPACE)
 		var startx = START_X #+ (position.x-rowwidth)/2
 		var randomNum = randi_range(3, 6)
-		#var w1 = randomNum * INVADER_WIDTH
-		#var w2 = randomNum * HORIZSPACE
-		#var w3 = (w1 + w2) /2
-		#var w4 = get_viewport_rect().size.x / 2
-		#c_spawn_position = w4 - w3 
+		var w1 = randomNum * INVADER_WIDTH
+		var w2 = randomNum * HORIZSPACE
+		var w3 = (w1 + w2) /2
+		var w4 = get_viewport_rect().size.x / 2
+		c_spawn_position = w4 - w3 
 		if first_round == false: #BKM 68-74
 			totalCount = cols # Any suggestions? The totalCount is
 			cols = randomNum * 2 + 1 # causing invaders to spawn
@@ -81,8 +81,7 @@ func spawnInvaders():
 			# and crashes the game.
 		for col in cols:
 			if rows > 3:
-				var x = startx + (col * 24 * 1.5) + (col * HORIZSPACE)
-				#var x = c_spawn_position
+				var x = c_spawn_position
 				var y = STARTY + (row * 24 ) + (row * VERTSPACE)
 				var type = 10
 				if row == 0:
@@ -91,8 +90,7 @@ func spawnInvaders():
 					type = 20
 				spawnInvader(Vector2(x, y), type)
 			elif rows == 3:
-				var x = startx + (col * 24 * 1.5) + (col * HORIZSPACE)
-				#var x = c_spawn_position
+				var x = c_spawn_position
 				var y = STARTY + (row * 24 ) + (row * VERTSPACE)
 				var type = 10
 				if row == 0:
@@ -104,8 +102,7 @@ func spawnInvaders():
 				else:
 					spawnInvader(Vector2(x, y), aln_types.pick_random())
 			else:
-				#var x = c_spawn_position
-				var x = startx + (col * 24 * 1.5) + (col * HORIZSPACE)
+				var x = c_spawn_position
 				var y = STARTY + (row * 24 ) + (row * VERTSPACE)
 				# var type: int = aln_types.pick_random()
 				spawnInvader(Vector2(x, y), aln_types.pick_random())
